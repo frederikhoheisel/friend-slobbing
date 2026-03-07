@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bimq0xrb8pjp3"]
+
+[ext_resource type="PackedScene" uid="uid://4u1nbhekby8g" path="res://src/ui/main_menu.tscn" id="1_eewff"]
+
+[node name="Main" type="Node" unique_id=1797907124]
+
+[node name="MainMenu" parent="." unique_id=97759667 instance=ExtResource("1_eewff")]

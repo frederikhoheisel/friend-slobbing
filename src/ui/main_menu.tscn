@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://4u1nbhekby8g"]
+
+[ext_resource type="Script" uid="uid://ytn1jxcvemy6" path="res://src/ui/main_menu.gd" id="1_qkuje"]
+[ext_resource type="Texture2D" uid="uid://b4o7vx0n8db1s" path="res://addons/tube/icons/tube_client.svg" id="2_qoywa"]
+
+[node name="MainMenu" type="CanvasLayer" unique_id=97759667]
+script = ExtResource("1_qkuje")
+
+[node name="Control" type="Control" parent="." unique_id=1762716334]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Center" type="PanelContainer" parent="Control" unique_id=1536914982]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Center" unique_id=155594180]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Center/MarginContainer" unique_id=1738798875]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="EnetMenu" type="VBoxContainer" parent="Control/Center/MarginContainer/HBoxContainer" unique_id=1121138720]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Center/MarginContainer/HBoxContainer/EnetMenu" unique_id=1584022054]
+layout_mode = 2
+text = "Slobby slob slob"
+
+[node name="ButtonJoin" type="Button" parent="Control/Center/MarginContainer/HBoxContainer/EnetMenu" unique_id=1769506830]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Join"
+
+[node name="ButtonQuit" type="Button" parent="Control/Center/MarginContainer/HBoxContainer/EnetMenu" unique_id=1952219336]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
+
+[node name="TubeMenu" type="VBoxContainer" parent="Control/Center/MarginContainer/HBoxContainer" unique_id=1814763385]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="LabelTitel" type="Label" parent="Control/Center/MarginContainer/HBoxContainer/TubeMenu" unique_id=426864343]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Slobby slob slob"
+
+[node name="LabelSessionID" type="Label" parent="Control/Center/MarginContainer/HBoxContainer/TubeMenu" unique_id=213170615]
+layout_mode = 2
+text = "Session ID:"
+
+[node name="LineEditSessionID" type="LineEdit" parent="Control/Center/MarginContainer/HBoxContainer/TubeMenu" unique_id=1300547777]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="LabelUsername" type="Label" parent="Control/Center/MarginContainer/HBoxContainer/TubeMenu" unique_id=1833396044]
+layout_mode = 2
+text = "Username:"
+
+[node name="LineEditUsername" type="LineEdit" parent="Control/Center/MarginContainer/HBoxContainer/TubeMenu" unique_id=1218088]
+unique_name_in_owner = true
+layout_mode = 2
+max_length = 16
+
+[node name="HSeparator" type="HSeparator" parent="Control/Center/MarginContainer/HBoxContainer/TubeMenu" unique_id=2022153557]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="ButtonJoinTube" type="Button" parent="Control/Center/MarginContainer/HBoxContainer/TubeMenu" unique_id=1971016161]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Join"
+
+[node name="ButtonQuitTube" type="Button" parent="Control/Center/MarginContainer/HBoxContainer/TubeMenu" unique_id=1526864224]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
+
+[node name="HSeparator2" type="HSeparator" parent="Control/Center/MarginContainer/HBoxContainer/TubeMenu" unique_id=1828660296]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="ButtonCreateTube" type="Button" parent="Control/Center/MarginContainer/HBoxContainer/TubeMenu" unique_id=909557422]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/icon_max_width = 24
+text = "Create Session"
+icon = ExtResource("2_qoywa")

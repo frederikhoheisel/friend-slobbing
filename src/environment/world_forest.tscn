@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://ef4g23lco1jq"]
+
+[ext_resource type="Texture2D" uid="uid://bshepw7quked6" path="res://assets/kenney_prototype-textures/PNG/Dark/texture_07.png" id="1_15ypw"]
+[ext_resource type="Script" uid="uid://17k5htd42jhp" path="res://src/environment/world_forest.gd" id="1_ysfha"]
+[ext_resource type="Texture2D" uid="uid://d2ttkh4d53jnf" path="res://assets/kenney_prototype-textures/PNG/Green/texture_09.png" id="2_gw5da"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gw5da"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ysfha"]
+albedo_texture = ExtResource("1_15ypw")
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lvhyh"]
+material = SubResource("StandardMaterial3D_ysfha")
+size = Vector2(200, 200)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvhyh"]
+albedo_texture = ExtResource("2_gw5da")
+uv1_triplanar = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_80tjd"]
+material = SubResource("StandardMaterial3D_lvhyh")
+height = 5.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_80tjd"]
+height = 5.0
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gw5da"]
+
+[sub_resource type="Sky" id="Sky_ysfha"]
+sky_material = SubResource("ProceduralSkyMaterial_gw5da")
+
+[sub_resource type="Environment" id="Environment_lvhyh"]
+background_mode = 2
+sky = SubResource("Sky_ysfha")
+
+[node name="WorldForest" type="Node3D" unique_id=1241989430]
+script = ExtResource("1_ysfha")
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=1330765203]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=125125144]
+shape = SubResource("WorldBoundaryShape3D_gw5da")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1214000767]
+mesh = SubResource("PlaneMesh_lvhyh")
+
+[node name="Tree" type="StaticBody3D" parent="." unique_id=154358025]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.424326, 2.4670181, -5.709848)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Tree" unique_id=907751381]
+mesh = SubResource("CylinderMesh_80tjd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tree" unique_id=449365249]
+shape = SubResource("CylinderShape3D_80tjd")
+
+[node name="Tree2" type="StaticBody3D" parent="." unique_id=2131413406]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.756945, 1.2147293, -2.545154)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Tree2" unique_id=1330723463]
+mesh = SubResource("CylinderMesh_80tjd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tree2" unique_id=790359985]
+shape = SubResource("CylinderShape3D_80tjd")
+
+[node name="Tree3" type="StaticBody3D" parent="." unique_id=797884753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.801725, 2.405612, -10.392153)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Tree3" unique_id=196044598]
+mesh = SubResource("CylinderMesh_80tjd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tree3" unique_id=466164986]
+shape = SubResource("CylinderShape3D_80tjd")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1311728498]
+transform = Transform3D(0.63957316, 0, 0.7687302, 0, 1, 0, -0.7687302, 0, 0.63957316, 0, 3.7067127, 2.7741122)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1277915399]
+environment = SubResource("Environment_lvhyh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1278689121]
+transform = Transform3D(0.9981687, -0.05238679, 0.030245543, 0, 0.49999997, 0.86602545, -0.060491055, -0.8644395, 0.49908435, 0, 16.072609, 0)
+shadow_enabled = true
+
+[node name="SpawnContainer" type="Node3D" parent="." unique_id=774632346]
+unique_name_in_owner = true
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1482769414]
+_spawnable_scenes = PackedStringArray("uid://dbhr21cpbufgf", "uid://bad2sr8q4w27s")
+spawn_path = NodePath("../SpawnContainer")
+
+[node name="TimerTarget" type="Timer" parent="." unique_id=1649587170]
+unique_name_in_owner = true
+wait_time = 5.0
+autostart = true
