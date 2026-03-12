@@ -1,4 +1,4 @@
-class_name Player
+#class_name Player
 extends CharacterBody3D
 
 
@@ -118,10 +118,3 @@ func shoot() -> void:
 	var pos: Vector3 = self.global_position
 	
 	Global.shoot_ball.rpc_id(1, pos, facing_dir, force)
-
-
-@rpc("any_peer", "call_local")
-func register_hit() -> void:
-	hit_marker.show()
-	await get_tree().create_timer(0.2).timeout
-	hit_marker.hide()

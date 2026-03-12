@@ -1,7 +1,9 @@
 extends Node
 
 
-const PLAYER: PackedScene = preload("uid://ed3ymhltg8qv")
+#const PLAYER: PackedScene = preload("uid://ed3ymhltg8qv")
+const CRAB: PackedScene = preload("uid://c88reb1x0ay7u")
+
 const TUBE_CONTEXT: Resource = preload("uid://b5qrd57ir8f10")
 
 
@@ -56,7 +58,7 @@ func add_player(peer_id: int) -> void:
 	if peer_id == 1 and multiplayer.multiplayer_peer is ENetMultiplayerPeer:
 		return
 	
-	var new_player: CharacterBody3D = PLAYER.instantiate()
+	var new_player: CharacterBody3D = CRAB.instantiate()
 	new_player.name = str(peer_id)
 	
 	new_player.position = Vector3(randf_range(-5.0, 5.0), 1.0, randf_range(-5.0, 5.0))

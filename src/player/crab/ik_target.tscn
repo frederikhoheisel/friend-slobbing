@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://nft5427s22tn"]
+
+[ext_resource type="Script" uid="uid://b70jrcxwrhuki" path="res://src/player/crab/ik_target.gd" id="1_vmwe1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o0pgy"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_mvebr"]
+material = SubResource("StandardMaterial3D_o0pgy")
+radius = 0.05
+height = 0.1
+
+[sub_resource type="SphereMesh" id="SphereMesh_vmwe1"]
+radius = 0.05
+height = 0.1
+
+[node name="IKTarget" type="Marker3D" unique_id=1917157621]
+top_level = true
+script = ExtResource("1_vmwe1")
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1425456654]
+top_level = true
+enabled = false
+target_position = Vector3(0, -10, 0)
+
+[node name="DebugRoot" type="MeshInstance3D" parent="." unique_id=647669075]
+visible = false
+mesh = SubResource("SphereMesh_mvebr")
+
+[node name="DebugTarget" type="MeshInstance3D" parent="." unique_id=1772887642]
+visible = false
+mesh = SubResource("SphereMesh_vmwe1")

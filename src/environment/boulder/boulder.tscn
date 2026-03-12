@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bvoi3hqwq1p65"]
+
+[ext_resource type="Texture2D" uid="uid://dicj5w8o6paey" path="res://assets/kenney_prototype-textures/PNG/Purple/texture_06.png" id="1_47qqv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0lsen"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_47qqv")
+uv1_triplanar = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_k2xqe"]
+material = SubResource("StandardMaterial3D_0lsen")
+radius = 0.25
+height = 0.7
+radial_segments = 5
+rings = 1
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rhw3f"]
+points = PackedVector3Array(-0.23776414, -0.10003914, -0.07726155, -1.4901161e-08, -0.10003914, -0.25, -0.16812922, -0.27682066, -0.054639995, -0.10394035, -0.27682066, 0.14297774, -0.14695016, -0.10003914, 0.2022542, -0.23776414, 0.09997064, -0.07726155, 0.2377641, -0.10003914, -0.07726155, -1.4901161e-08, -0.27682066, -0.17677873, -1.4901161e-08, 0.09997064, -0.25, -1.4901161e-08, -0.35, -1.17868185e-05, 0.10389377, -0.27682066, 0.14297774, 0.14690359, -0.10003914, 0.2022542, -0.14695016, 0.09997064, 0.2022542, -0.10394035, 0.27675214, 0.14297774, -0.16812922, 0.27675214, -0.054639995, 0.16808264, -0.27682066, -0.054639995, 0.2377641, 0.09997064, -0.07726155, -1.4901161e-08, 0.27675214, -0.17677873, 0.14690359, 0.09997064, 0.2022542, 0.10389377, 0.27675214, 0.14297774, -1.4901161e-08, 0.3499315, -1.17868185e-05, 0.16808264, 0.27675214, -0.054639995)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_47qqv"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="Boulder" type="RigidBody3D" unique_id=391149543 groups=["Pickup"]]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1463822027]
+mesh = SubResource("CapsuleMesh_k2xqe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1928771093]
+shape = SubResource("ConvexPolygonShape3D_rhw3f")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=2074977763]
+replication_config = SubResource("SceneReplicationConfig_47qqv")

@@ -2,7 +2,6 @@ extends CanvasLayer
 
 
 const WORLD_FOREST: PackedScene = preload("uid://ef4g23lco1jq")
-const PLAYER: PackedScene = preload("uid://ed3ymhltg8qv")
 
 
 @onready var enet_menu: VBoxContainer = %EnetMenu

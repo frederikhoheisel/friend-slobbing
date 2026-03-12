@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://dyfa0h3rt4qex"]
+
+[ext_resource type="Script" uid="uid://dlrjont3pjata" path="res://src/ui/hud.gd" id="1_4rn03"]
+[ext_resource type="Texture2D" uid="uid://pxj3b3e28fg3" path="res://addons/tube/inspector/icons/clipboard_icon.tres" id="1_q64n3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rxibo"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="HUD" type="CanvasLayer" unique_id=1427459117]
+script = ExtResource("1_4rn03")
+
+[node name="Menu" type="Control" parent="." unique_id=1038841408]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Menu" unique_id=685382786]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/PanelContainer" unique_id=58169877]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/PanelContainer/MarginContainer" unique_id=1826973525]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/PanelContainer/MarginContainer/VBoxContainer" unique_id=906165066]
+layout_mode = 2
+
+[node name="LabelSession" type="Label" parent="Menu/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=664857603]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "12345"
+
+[node name="ButtonCopySession" type="Button" parent="Menu/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=921669408]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/icon_max_width = 24
+icon = ExtResource("1_q64n3")
+
+[node name="ButtonLeave" type="Button" parent="Menu/PanelContainer/MarginContainer/VBoxContainer" unique_id=1940347788]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Leave Game"
+
+[node name="Crosshair" type="Panel" parent="." unique_id=980408272]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rxibo")
+
+[node name="HitMarker" type="Label" parent="." unique_id=1133625860]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -11.166672
+offset_right = 5.0
+offset_bottom = 11.1666565
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1)
+pivot_offset = Vector2(0.5, 0.5)
+pivot_offset_ratio = Vector2(0.5, 0)
+size_flags_horizontal = 4
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
