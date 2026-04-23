@@ -19,10 +19,6 @@ var jumping: bool = false
 @onready var nameplate: Label3D = %Nameplate
 @onready var camera_3d: Camera3D = %Camera3D
 
-@onready var shape_cast_grab_l: ShapeCast3D = %ShapeCastGrabL
-@onready var shape_cast_grab_r: ShapeCast3D = %ShapeCastGrabR
-@onready var grab_manager: Node3D = %GrabManager
-
 
 func _enter_tree() -> void:
 	self.set_multiplayer_authority(int(name), true)
@@ -85,37 +81,12 @@ func _process(delta: float) -> void:
 	move_and_slide()
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if not self.is_multiplayer_authority():
-		return
-	
-	if event.is_action_pressed("grab"):
-		print('halo')
-		var target: RigidBody3D = get_grab_target()
-		print(target)
-		if target:
-			grab_manager.object = target
-	
-	if event.is_action_released("grab"):
-		grab_manager.object = null
-
-
 func shoot() -> void:
 	var facing_dir: Vector3 = -camera_3d.global_transform.basis.z
 	var force: float = 100.0
 	var pos: Vector3 = self.global_position
 	
 	Global.shoot_ball.rpc_id(1, pos, facing_dir, force)
-
-
-func get_grab_target() -> RigidBody3D:
-	shape_cast_grab_l.force_shapecast_update()
-	if shape_cast_grab_l.is_colliding():
-		var collider: Node3D = shape_cast_grab_l.get_collider(0)
-		if collider.is_in_group('Pickup'):
-			return collider
-	
-	return null
 
 
 func _basis_from_normal(normal: Vector3) -> Basis:

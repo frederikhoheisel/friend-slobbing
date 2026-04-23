@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://hyexqho58kyl" path="res://src/player/car/car.gd" id="1_2k8pa"]
 [ext_resource type="Texture2D" uid="uid://dkxvvvsssqonn" path="res://assets/kenney_car-kit/Models/GLB format/Textures/colormap.png" id="1_5ogbm"]
+[ext_resource type="AudioStream" uid="uid://c8dqesmhucl8b" path="res://assets/audio/engine.ogg" id="3_mae78"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6noe"]
 resource_name = "colormap"
@@ -76,8 +77,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_824tv")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2k8pa"]
-size = Vector3(0.90093994, 0.37548828, 1)
+[sub_resource type="SphereShape3D" id="SphereShape3D_mae78"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_wjq5j"]
 _surfaces = [{
@@ -229,8 +229,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8189113e-13, 0.27657777, -0
 mesh = SubResource("ArrayMesh_bt6cy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1209197292]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.312, 0)
-shape = SubResource("BoxShape3D_2k8pa")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.118)
+shape = SubResource("SphereShape3D_mae78")
 
 [node name="VehicleWheelFrontRight" type="VehicleWheel3D" parent="." unique_id=202225324]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.379, 0.21, -0.323)
@@ -270,3 +270,14 @@ mesh = SubResource("ArrayMesh_opnv8")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2013098112]
 transform = Transform3D(1, 0, 0, 0, 0.91742855, 0.3979006, 0, -0.3979006, 0.91742855, 0, 6.79411, 6.7680683)
+
+[node name="EngineSound" type="AudioStreamPlayer3D" parent="." unique_id=703378383]
+unique_name_in_owner = true
+stream = ExtResource("3_mae78")
+autoplay = true
+
+[node name="GroundRaycast" type="RayCast3D" parent="." unique_id=770995512]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+target_position = Vector3(0, -0.7, 0)
+debug_shape_custom_color = Color(1, 0, 0, 1)

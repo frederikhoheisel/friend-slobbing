@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c7ssmhojvvj0u"]
 
 [ext_resource type="Texture2D" uid="uid://bshepw7quked6" path="res://assets/kenney_prototype-textures/PNG/Dark/texture_07.png" id="1_btqyr"]
-[ext_resource type="PackedScene" uid="uid://i8mnsrqyp8fy" path="res://src/player/car/Car.tscn" id="2_v24c1"]
+[ext_resource type="PackedScene" uid="uid://j62h0sr661id" path="res://src/player/car2/raycar.tscn" id="3_a0h31"]
 [ext_resource type="MeshLibrary" uid="uid://bomqyi6put75d" path="res://src/environment/level/racie_track_library.tres" id="3_v24c1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_btqyr"]
@@ -26,6 +26,11 @@ uv1_triplanar = true
 material = SubResource("StandardMaterial3D_fwuov")
 size = Vector2(200, 200)
 
+[sub_resource type="Curve" id="Curve_v24c1"]
+_data = [Vector2(0, 0.3), 0.0, 0.0, 0, 0, Vector2(0.3, 0.90000004), 0.0, 0.0, 0, 0, Vector2(0.6, 0.8), 0.0, 0.0, 0, 0, Vector2(1, 0.1), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
+
 [node name="DrivingTest" type="Node3D" unique_id=42224732]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1730645472]
@@ -43,15 +48,16 @@ shape = SubResource("WorldBoundaryShape3D_a0h31")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=444333550]
 mesh = SubResource("PlaneMesh_a2hla")
 
-[node name="Car" parent="." unique_id=955958588 instance=ExtResource("2_v24c1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.80101204, 1.7282696, 2.0883284)
-max_steer = 0.7
-
 [node name="GridMap" type="GridMap" parent="." unique_id=790021243]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.99, 0)
 mesh_library = ExtResource("3_v24c1")
-cell_octant_size = 13
-cell_scale = 4.0
+cell_size = Vector3(4, 4, 4)
+cell_scale = 8.0
 data = {
 "cells": PackedInt32Array(65533, 65534, 1048580, 65529, 65534, 1048581, 65523, 65526, 1441797, 65523, 65528, 1048585, 65519, 65529, 1048591, 65511, 65527, 1441807, 65509, 65525, 655380, 65505, 65521, 1441797, 65501, 65531, 5, 65499, 65527, 6, 65499, 65531, 4, 65499, 65535, 12, 65499, 3, 16, 65511, 2, 1048602, 65499, 9, 1048587, 65505, 9, 1048595, 65505, 7, 1441807, 131045, 7, 1441801, 65511, 0, 1441797, 65515, 4, 655385, 131053, 8, 1048600, 65519, 14, 1048582, 131055, 6, 655367, 65519, 2, 655375, 65517, 2, 7, 65523, 10, 655365, 65519, 0, 1441797, 65525, 8, 1048596, 65525, 6, 1441796, 65533, 65532, 1441797, 1, 0, 655360, 1, 4, 655365, 65533, 8, 1048600)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Raycar" parent="." unique_id=205483183 instance=ExtResource("3_a0h31")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.951539, 1.3887136, 10.952962)
+accel_curve = SubResource("Curve_v24c1")

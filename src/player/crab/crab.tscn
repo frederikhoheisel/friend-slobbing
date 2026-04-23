@@ -1006,7 +1006,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_b1dm0"]
+[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_5ftwi"]
 angle = 2.0943952
 
 [sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_ts6ec"]
@@ -1015,12 +1015,6 @@ angle = 2.0943952
 [sub_resource type="SphereShape3D" id="SphereShape3D_n8d3p"]
 radius = 0.25
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_b1dm0"]
-radius = 0.15
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_ts6ec"]
-radius = 0.15
-
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_b1dm0"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
@@ -1028,6 +1022,9 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ts6ec"]
+radius = 0.2
 
 [node name="Crab" type="CharacterBody3D" unique_id=102575900]
 collision_layer = 2
@@ -1515,7 +1512,7 @@ transform = Transform3D(0.46924454, 0.00051516475, 0.88306826, -0.8748225, 0.136
 mesh = SubResource("ArrayMesh_egt0q")
 
 [node name="Finger_L_013" type="BoneAttachment3D" parent="RootNode/MaintenanceDrone/Skeleton3D" unique_id=1854685546]
-transform = Transform3D(0.6185157, 0.74686223, -0.24420282, -0.64391077, 0.65987027, 0.3872332, 0.45035195, -0.08226488, 0.88905305, -0.17913714, 0.29923046, 0.177423)
+transform = Transform3D(0.5704109, 0.78413904, -0.244452, -0.6827744, 0.61811596, 0.3895526, 0.45656306, -0.05529948, 0.88797057, -0.16479501, 0.31626567, 0.17390332)
 bone_name = "Finger.L_013"
 bone_idx = 16
 
@@ -1526,7 +1523,7 @@ transform = Transform3D(0.97780085, -0.20952882, -0.0015304165, 0.20952901, 0.97
 mesh = SubResource("ArrayMesh_5x771")
 
 [node name="Thumb_L_014" type="BoneAttachment3D" parent="RootNode/MaintenanceDrone/Skeleton3D" unique_id=1784168474]
-transform = Transform3D(0.54923093, 0.79916096, -0.24430883, -0.70035726, 0.5996802, 0.38714677, 0.45589978, -0.041529406, 0.8890615, -0.17097661, 0.24326484, 0.20413214)
+transform = Transform3D(0.49798462, 0.83198535, -0.24456282, -0.7353303, 0.5546172, 0.38947213, 0.45967388, -0.014116675, 0.8879753, -0.16042082, 0.25961533, 0.20005152)
 bone_name = "Thumb.L_014"
 bone_idx = 18
 
@@ -1581,7 +1578,7 @@ transform = Transform3D(0.46924475, -0.0005153348, -0.88306814, 0.8748224, 0.136
 mesh = SubResource("ArrayMesh_08rja")
 
 [node name="Finger_R_026" type="BoneAttachment3D" parent="RootNode/MaintenanceDrone/Skeleton3D" unique_id=1667941793]
-transform = Transform3D(0.6185599, -0.74689895, 0.243977, 0.6439761, 0.65981114, 0.38722524, -0.4501967, -0.08240665, 0.88911855, 0.17913878, 0.29923272, 0.17742829)
+transform = Transform3D(0.5704587, -0.78417844, 0.24421376, 0.68284476, 0.61805284, 0.38953024, -0.456398, -0.0554509, 0.8880462, 0.16479626, 0.31626737, 0.17390707)
 bone_name = "Finger.R_026"
 bone_idx = 34
 
@@ -1592,7 +1589,7 @@ transform = Transform3D(0.977801, 0.20952882, 0.0015304222, -0.20952903, 0.97780
 mesh = SubResource("ArrayMesh_yjval")
 
 [node name="Thumb_R_027" type="BoneAttachment3D" parent="RootNode/MaintenanceDrone/Skeleton3D" unique_id=489733797]
-transform = Transform3D(0.54927164, -0.79920167, 0.24408303, 0.70041716, 0.59961545, 0.38713884, -0.45575783, -0.041684467, 0.889127, 0.17097707, 0.24326564, 0.20413385)
+transform = Transform3D(0.49802858, -0.832029, 0.24432461, 0.73539466, 0.554548, 0.3894498, -0.4595231, -0.014282219, 0.888051, 0.16042079, 0.25961542, 0.2000515)
 bone_name = "Thumb.R_027"
 bone_idx = 36
 
@@ -1743,6 +1740,7 @@ settings/3/use_virtual_end = false
 settings/3/extend_end_bone = false
 
 [node name="CCDIK3D" type="CCDIK3D" parent="RootNode/MaintenanceDrone/Skeleton3D" unique_id=137240343]
+max_iterations = 100
 deterministic = true
 setting_count = 2
 settings/0/target_node = NodePath("../../../../ArmsIKTargets/IKTargetArmLeft")
@@ -1760,12 +1758,12 @@ settings/1/end_bone = 36
 settings/1/extend_end_bone = false
 settings/1/joint_count = 3
 settings/0/joints/0/rotation_axis = 3
-settings/0/joints/0/limitation = SubResource("JointLimitationCone3D_b1dm0")
+settings/0/joints/0/limitation = SubResource("JointLimitationCone3D_5ftwi")
 settings/0/joints/0/limitation/right_axis = 0
 settings/0/joints/0/limitation/rotation_offset = Quaternion(0.72, 1.02, -0.23, 1)
 settings/0/joints/1/rotation_axis = 3
 settings/0/joints/1/limitation = null
-settings/0/joints/2/rotation_axis = 1
+settings/0/joints/2/rotation_axis = 3
 settings/0/joints/2/limitation = null
 settings/1/joints/0/rotation_axis = 3
 settings/1/joints/0/limitation = SubResource("JointLimitationCone3D_ts6ec")
@@ -1786,22 +1784,12 @@ unique_name_in_owner = true
 [node name="ArmsIKTargets" type="Node3D" parent="." unique_id=1450736385]
 
 [node name="IKTargetArmLeft" type="Marker3D" parent="ArmsIKTargets" unique_id=942814644]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16, 0.2, -0.26)
 
 [node name="IKTargetArmRight" type="Marker3D" parent="ArmsIKTargets" unique_id=933686410]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16, 0.2, -0.26)
-
-[node name="ShapeCastGrabL" type="ShapeCast3D" parent="." unique_id=375509712]
-unique_name_in_owner = true
-enabled = false
-shape = SubResource("SphereShape3D_b1dm0")
-target_position = Vector3(0.125, 0.2, -0.35)
-
-[node name="ShapeCastGrabR" type="ShapeCast3D" parent="." unique_id=1417839566]
-unique_name_in_owner = true
-enabled = false
-shape = SubResource("SphereShape3D_ts6ec")
-target_position = Vector3(-0.125, 0.2, -0.35)
 
 [node name="LegIKPoles" type="Node3D" parent="." unique_id=483017528]
 
@@ -1863,3 +1851,12 @@ replication_config = SubResource("SceneReplicationConfig_b1dm0")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -0.35)
 script = ExtResource("6_ts6ec")
+
+[node name="Area3D" type="Area3D" parent="GrabManager" unique_id=3255656]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GrabManager/Area3D" unique_id=132532582]
+shape = SubResource("SphereShape3D_ts6ec")
+
+[connection signal="body_entered" from="GrabManager/Area3D" to="GrabManager" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="GrabManager/Area3D" to="GrabManager" method="_on_area_3d_body_exited"]
