@@ -29,12 +29,13 @@ func _physics_process(delta: float) -> void:
 		_do_single_acceleration(wheel, delta)
 		_do_single_traction(wheel, id)
 		id += 1
-		
+	
 	if grounded:
 		self.center_of_mass = Vector3.ZERO
 	else:
-		self.center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
-		self.center_of_mass = Vector3.DOWN * 0.5
+		self.center_of_mass = Vector3(turn_input * 0.2, - 0.5, 0.0)
+	
+	%CoM.position = self.center_of_mass
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -55,8 +56,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		motor_input = 0
 
 
+var turn_input: float
 func _basic_steering_rotation(delta: float) -> void:
-	var turn_input: float = Input.get_axis("right", "left") * tire_turn_speed
+	turn_input = Input.get_axis("right", "left") * tire_turn_speed
 	
 	if turn_input:
 		%WheelFL.rotation.y = clampf(%WheelFL.rotation.y + turn_input * delta, 
@@ -143,6 +145,10 @@ func _do_single_suspension(ray: Wheel) -> void:
 		var spring_damp_force: float = ray.spring_damping * relative_vel
 		
 		var force_vector: Vector3 = (spring_force - spring_damp_force) * ray.get_collision_normal()
+		
+		print(force_vector)
+		if force_vector.angle_to(Vector3.UP) < PI / 2.0:
+			force_vector.y = 0.0
 		
 		contact = ray.wheel.global_position
 		var force_pos: Vector3 = contact - self.global_position

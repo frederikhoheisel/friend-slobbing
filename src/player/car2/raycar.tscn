@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://68jstoyiogrc" path="res://src/player/car2/raycar.gd" id="1_wxgya"]
 [ext_resource type="Texture2D" uid="uid://dkxvvvsssqonn" path="res://assets/kenney_car-kit/Models/GLB format/Textures/colormap.png" id="2_pn2iy"]
 [ext_resource type="Script" uid="uid://cptq4fchxu371" path="res://src/player/car2/raycast_wheel.gd" id="3_pn2iy"]
+[ext_resource type="Script" uid="uid://da65jfji1eiiu" path="res://src/player/car2/car_camera.gd" id="4_4vm81"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lshuk"]
 resource_name = "colormap"
@@ -240,11 +241,22 @@ material = SubResource("StandardMaterial3D_430hw")
 size = Vector2(0.3, 0.5)
 orientation = 1
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vm81"]
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_4pxd4"]
+material = SubResource("StandardMaterial3D_4vm81")
+radius = 0.1
+height = 0.2
+
 [node name="Raycar" type="RigidBody3D" unique_id=205483183 node_paths=PackedStringArray("wheels", "skid_marks")]
 mass = 50.0
+center_of_mass_mode = 1
 script = ExtResource("1_wxgya")
 wheels = [NodePath("WheelFL"), NodePath("WheelBL"), NodePath("WheelFR"), NodePath("WheelBR")]
-skid_marks = [NodePath("Node3D/GPUParticles3D"), NodePath("Node3D/GPUParticles3D2"), NodePath("Node3D/GPUParticles3D3"), NodePath("Node3D/GPUParticles3D4")]
+skid_marks = [NodePath("Particles/GPUParticles3D"), NodePath("Particles/GPUParticles3D2"), NodePath("Particles/GPUParticles3D3"), NodePath("Particles/GPUParticles3D4")]
 
 [node name="body" type="MeshInstance3D" parent="." unique_id=686356064]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.23590448, -0.025)
@@ -263,7 +275,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, 0, -0.71)
 enabled = false
 script = ExtResource("3_pn2iy")
-rest_dist = 0.15
+rest_dist = 0.5
 over_extend = 0.1
 grip_curve = SubResource("Curve_pn2iy")
 
@@ -276,7 +288,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0, 0.61146826)
 enabled = false
 script = ExtResource("3_pn2iy")
-rest_dist = 0.15
+rest_dist = 0.5
 over_extend = 0.1
 is_motor = true
 grip_curve = SubResource("Curve_pn2iy")
@@ -290,7 +302,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0, -0.71)
 enabled = false
 script = ExtResource("3_pn2iy")
-rest_dist = 0.15
+rest_dist = 0.5
 over_extend = 0.1
 grip_curve = SubResource("Curve_pn2iy")
 
@@ -303,7 +315,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0, 0.61052996)
 enabled = false
 script = ExtResource("3_pn2iy")
-rest_dist = 0.15
+rest_dist = 0.5
 over_extend = 0.1
 is_motor = true
 grip_curve = SubResource("Curve_pn2iy")
@@ -312,12 +324,9 @@ grip_curve = SubResource("Curve_pn2iy")
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.050000012, -0.08590448, -0.00027287006)
 mesh = SubResource("ArrayMesh_topjr")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=533711078]
-transform = Transform3D(1, 0, 0, 0, 0.887341, 0.46111375, 0, -0.46111375, 0.887341, 0, 1.741, 2.584)
+[node name="Particles" type="Node3D" parent="." unique_id=376840186]
 
-[node name="Node3D" type="Node3D" parent="." unique_id=376840186]
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Node3D" unique_id=1801495027]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Particles" unique_id=1801495027]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3908714, 1.1920929e-07, 0.15266079)
 emitting = false
 amount = 300
@@ -326,7 +335,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_4pxd4")
 draw_pass_1 = SubResource("QuadMesh_fquxh")
 
-[node name="GPUParticles3D2" type="GPUParticles3D" parent="Node3D" unique_id=1202269042]
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="Particles" unique_id=1202269042]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3908714, 1.1920929e-07, 0.15266079)
 emitting = false
 amount = 300
@@ -335,7 +344,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_4pxd4")
 draw_pass_1 = SubResource("QuadMesh_fquxh")
 
-[node name="GPUParticles3D3" type="GPUParticles3D" parent="Node3D" unique_id=727518796]
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="Particles" unique_id=727518796]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3908714, 1.1920929e-07, 0.15266079)
 emitting = false
 amount = 300
@@ -344,7 +353,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_4pxd4")
 draw_pass_1 = SubResource("QuadMesh_fquxh")
 
-[node name="GPUParticles3D4" type="GPUParticles3D" parent="Node3D" unique_id=941249773]
+[node name="GPUParticles3D4" type="GPUParticles3D" parent="Particles" unique_id=941249773]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3554915, 1.1920929e-07, 0.11052424)
 emitting = false
 amount = 300
@@ -352,3 +361,19 @@ lifetime = 5.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_4pxd4")
 draw_pass_1 = SubResource("QuadMesh_fquxh")
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=1199800139]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=533711078]
+transform = Transform3D(1, 0, 0, 0, 0.8953156, 0.4454323, 0, -0.4454323, 0.8953156, 0, 3.3518467, 2.9160964)
+current = true
+script = ExtResource("4_4vm81")
+rest_pos = Vector3(0, 4, 5)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=891895542]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56313324, -0.8664422)
+fov = 90.0
+
+[node name="CoM" type="MeshInstance3D" parent="." unique_id=682166237]
+unique_name_in_owner = true
+mesh = SubResource("SphereMesh_4pxd4")
