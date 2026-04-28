@@ -10,11 +10,11 @@ var prev_pos: Vector3
 @onready var target: Node3D = self.get_parent().get_parent()
 
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		self.top_level = false
-		pivot.rotate_y(-event.relative.x * 0.001)
-		self.top_level = true
+#func _input(event: InputEvent) -> void:
+	#if event is InputEventMouseMotion:
+		#self.top_level = false
+		#pivot.rotate_y(-event.relative.x * 0.001)
+		#self.top_level = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

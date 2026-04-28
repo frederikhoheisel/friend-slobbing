@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://cptq4fchxu371" path="res://src/player/car2/raycast_wheel.gd" id="3_pn2iy"]
 [ext_resource type="Script" uid="uid://da65jfji1eiiu" path="res://src/player/car2/car_camera.gd" id="4_4vm81"]
 [ext_resource type="Curve" uid="uid://c73wk3ewe8t4j" path="res://src/player/car2/tire_back.tres" id="4_430hw"]
-[ext_resource type="Curve" uid="uid://ct3fihbsmoh2c" path="res://src/player/car2/tire_front.tres" id="5_fquxh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_430hw"]
 friction = 0.0
@@ -13,6 +12,10 @@ friction = 0.0
 [sub_resource type="Curve" id="Curve_4vm81"]
 _data = [Vector2(0, 0.05288458), 0.0, 0.0, 0, 0, Vector2(0.51792115, 0.37980765), 0.0, 0.0, 0, 0, Vector2(1, 0.21634614), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="Curve" id="Curve_430hw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.19662929), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lshuk"]
 resource_name = "colormap"
@@ -262,8 +265,8 @@ linear_damp_mode = 1
 script = ExtResource("1_wxgya")
 wheels = [NodePath("WheelFL"), NodePath("WheelBL"), NodePath("WheelFR"), NodePath("WheelBR")]
 accel_curve = SubResource("Curve_4vm81")
-tire_turn_speed = 1.0
-tire_max_turn_deg = 15.0
+turn_curve = SubResource("Curve_430hw")
+grip_curve = ExtResource("4_430hw")
 skid_marks = [NodePath("Particles/GPUParticles3D"), NodePath("Particles/GPUParticles3D2"), NodePath("Particles/GPUParticles3D3"), NodePath("Particles/GPUParticles3D4")]
 debug_visuals = true
 
@@ -288,7 +291,6 @@ rest_dist = 0.1
 over_extend = 0.05
 wheel_radius = 0.33
 is_steer = true
-grip_curve = ExtResource("4_430hw")
 
 [node name="wheel-back-right" type="MeshInstance3D" parent="WheelFL" unique_id=1984589321]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.099999964, -0.08590448, 0.00025713444)
@@ -303,7 +305,6 @@ rest_dist = 0.1
 over_extend = 0.05
 wheel_radius = 0.33
 is_motor = true
-grip_curve = ExtResource("4_430hw")
 
 [node name="wheel-front-right" type="MeshInstance3D" parent="WheelBL" unique_id=1940148982]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.099999964, -0.08590448, -0.0007429123)
@@ -318,7 +319,6 @@ rest_dist = 0.1
 over_extend = 0.05
 wheel_radius = 0.33
 is_steer = true
-grip_curve = ExtResource("5_fquxh")
 
 [node name="wheel-back-left" type="MeshInstance3D" parent="WheelFR" unique_id=851608887]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.099999964, -0.086, 0)
@@ -335,7 +335,6 @@ rest_dist = 0.1
 over_extend = 0.05
 wheel_radius = 0.33
 is_motor = true
-grip_curve = ExtResource("4_430hw")
 
 [node name="wheel-front-left" type="MeshInstance3D" parent="WheelBR" unique_id=447778481]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.099999964, -0.08590448, -0.0007429123)

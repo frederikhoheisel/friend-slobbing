@@ -6,6 +6,8 @@ extends RigidBody3D
 @export var acceleration: float = 600.0
 @export var max_speed: float = 20.0
 @export var accel_curve: Curve
+@export var turn_curve: Curve
+@export var grip_curve: Curve
 @export var tire_turn_speed: float = 2.0
 @export var tire_max_turn_deg: float = 25.0
 
@@ -76,8 +78,9 @@ func _unhandled_input(event: InputEvent) -> void:
 var turn_input: float
 func _basic_steering_rotation(wheel: Wheel, delta: float) -> void:
 	if not wheel.is_steer: return
+	var speed_ratio: float = self.linear_velocity.length() / max_speed
 	
-	turn_input = Input.get_axis("right", "left") * (clampf(tire_turn_speed - pow(self.linear_velocity.length() * 0.05, 2.0), 0.0, 1.0))
+	turn_input = Input.get_axis("right", "left") * tire_turn_speed * turn_curve.sample_baked(speed_ratio)
 	
 	if turn_input:
 		wheel.rotation.y = clampf(wheel.rotation.y + turn_input * delta, 

@@ -14,7 +14,6 @@ extends RayCast3D
 @export_group("Motor")
 @export var is_motor: bool = false
 @export var is_steer: bool = false
-@export var grip_curve: Curve
 
 @export_group("Debug")
 @export var debug: bool = false
@@ -58,8 +57,9 @@ func _apply_physics(car: RayCar, delta: float) -> void:
 	var spring_force: float = spring_strength * offset
 	var tire_vel: Vector3 = car._get_point_velocity(contact) ##TODO
 	var spring_damp_force: float = spring_damping * self.global_basis.y.dot(tire_vel)
+	var suspension_force: float = spring_force - spring_damp_force
 	
-	var y_force: Vector3 = (spring_force - spring_damp_force) * self.get_collision_normal()
+	var y_force: Vector3 = suspension_force * self.get_collision_normal()
 	
 	# acceleration
 	if is_motor and car.motor_input:
@@ -72,7 +72,7 @@ func _apply_physics(car: RayCar, delta: float) -> void:
 	var steering_x_vel: float = self.global_basis.x.dot(tire_vel)
 	
 	grip_factor = absf(steering_x_vel / tire_vel.length())
-	var x_traction: float = grip_curve.sample_baked(grip_factor)
+	var x_traction: float = car.grip_curve.sample_baked(grip_factor)
 	
 	
 	if not car.hand_break and grip_factor < 0.2:
@@ -88,9 +88,19 @@ func _apply_physics(car: RayCar, delta: float) -> void:
 	
 	var f_vel: float = forward_dir.dot(tire_vel)
 	var z_friction: float = z_traction
+	if abs(f_vel) < 0.1:
+		z_friction = 2.0
 	if is_braking:
 		z_friction = z_brake_traction
 	var z_force: Vector3 = self.global_basis.z * f_vel * z_friction * ((car.mass * gravity) / 4.0)
+	
+	
+	# sliding on ramps prevention maybe
+	if absf(f_vel) < 0.1:
+		var susp: Vector3 = self.global_basis.y * suspension_force
+		z_force.z -= susp.z * car.global_basis.y.dot(Vector3.UP)
+		z_force.x -= susp.x * car.global_basis.y.dot(Vector3.UP)
+	
 	
 	car.apply_force(x_force, force_pos)
 	car.apply_force(y_force, force_pos)
