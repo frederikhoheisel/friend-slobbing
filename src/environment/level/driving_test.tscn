@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bshepw7quked6" path="res://assets/kenney_prototype-textures/PNG/Dark/texture_07.png" id="1_btqyr"]
 [ext_resource type="PackedScene" uid="uid://j62h0sr661id" path="res://src/player/car2/raycar.tscn" id="3_a0h31"]
 [ext_resource type="MeshLibrary" uid="uid://bomqyi6put75d" path="res://src/environment/level/racie_track_library.tres" id="3_v24c1"]
+[ext_resource type="PackedScene" uid="uid://c8jqhh0p5pln1" path="res://src/environment/cubes/cubes.tscn" id="4_a0h31"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_btqyr"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -61,3 +62,6 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="Raycar" parent="." unique_id=205483183 instance=ExtResource("3_a0h31")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.951539, 1.3887136, 10.952962)
 accel_curve = SubResource("Curve_v24c1")
+
+[node name="Cubes" parent="." unique_id=1996279496 instance=ExtResource("4_a0h31")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.205361, 0)

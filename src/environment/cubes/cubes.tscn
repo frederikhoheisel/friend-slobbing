@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c8jqhh0p5pln1"]
+
+[ext_resource type="Script" uid="uid://bu2gt84s0wawp" path="res://src/environment/cubes/cubes.gd" id="1_nchvg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_euu0u"]
+
+[node name="Cubes" type="MeshInstance3D" unique_id=1996279496 groups=["cube"]]
+mesh = SubResource("BoxMesh_euu0u")
+script = ExtResource("1_nchvg")
